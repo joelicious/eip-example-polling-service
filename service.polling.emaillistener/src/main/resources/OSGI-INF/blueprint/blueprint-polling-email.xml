@@ -34,7 +34,7 @@
 	</bean>
 
 	<camelContext
-		id="poll.file.CamelContext"
+		id="poll.email.CamelContext"
 		xmlns="http://camel.apache.org/schema/blueprint">
 		
 		<errorHandler
@@ -73,7 +73,7 @@
 			<to uri="file:data/unhandled" />
 		</onException>
 		
-		<route id="poll.file.receive">
+		<route id="poll.email.receive">
 		
 			<from
 				uri="{{mail.protocol}}://{{mail.host}}:{{mail.port}}?username={{mail.username}}&amp;password={{mail.password}}&amp;delete={{mail.delete}}&amp;mail.pop3.forgettopheaders={{mail.pop3Headers}}&amp;consumer.delay={{mail.polldelay}}&amp;consumer.initialDelay={{mail.initialDelay}}&amp;maxMessagesPerPoll={{mail.maxMessagesPerPoll}}&amp;fetchSize={{mail.fetchSize}}&amp;mapMailMessage=false" />

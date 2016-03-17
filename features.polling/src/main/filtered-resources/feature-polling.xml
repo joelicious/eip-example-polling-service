@@ -1,11 +1,19 @@
-<features>
-  <feature name="polling-service-demo" version="${project.version}">
-    <bundle>wrap:mvn:postgresql/postgresql/${postgresql-version}</bundle>
-    <bundle>wrap:mvn:org.springframework/spring-jdbc/${spring-jdbc-version}</bundle>
-    <bundle>mvn:org.jboss.examples/polling.service.entities/${project.version}</bundle>
-    <bundle>mvn:org.jboss.examples/polling.service.filetojms/${project.version}</bundle>
-    <bundle>mvn:org.jboss.examples/polling.service.ftptojms/${project.version}</bundle>
-    <bundle>mvn:org.jboss.examples/polling.service.sftptojms/${project.version}</bundle>
-    <bundle>mvn:org.jboss.examples/polling.service.jmstojdbc/${project.version}</bundle>
-  </feature>
+<?xml version="1.0" encoding="UTF-8"?>
+<features
+	name="app-polling-feature"
+	xmlns="http://karaf.apache.org/xmlns/features/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.0.0 http://karaf.apache.org/xmlns/features/v1.0.0">
+	<feature
+		name="app-polling"
+		version="${project.version}">
+		<bundle>wrap:mvn:postgresql/postgresql/${postgresql-version}</bundle>
+		<bundle>wrap:mvn:org.springframework/spring-jdbc/${spring-jdbc-version}</bundle>
+		<bundle>mvn:org.jboss.fuse/entities.travel/${project.version}</bundle>
+		<bundle>mvn:org.jboss.fuse/service.polling.emaillistener/${project.version}</bundle>
+		<bundle>mvn:org.jboss.fuse/service.polling.filelistener/${project.version}</bundle>
+		<bundle>mvn:org.jboss.fuse/service.polling.ftplistener/${project.version}</bundle>
+		<bundle>mvn:org.jboss.fuse/service.polling.sftplistener/${project.version}</bundle>
+		<bundle>mvn:org.jboss.fuse/orchestration.polling.core/${project.version}</bundle>
+	</feature>
 </features>

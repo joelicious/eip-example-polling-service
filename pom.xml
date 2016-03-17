@@ -72,6 +72,7 @@
 		<saxon.bundle.version>9.5.1-1_1</saxon.bundle.version>
 		<commons-lang-version>2.6</commons-lang-version>
 		<postgresql-version>8.4-702.jdbc4</postgresql-version>
+	    <spring-jdbc-version>3.2.8.RELEASE</spring-jdbc-version>
 
 		<!-- Logging Properties -->
 		<slf4j-version>1.6.6</slf4j-version>

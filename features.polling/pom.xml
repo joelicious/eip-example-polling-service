@@ -15,7 +15,7 @@
 	<packaging>jar</packaging>
 	<name>Features :: Polling</name>
 	
-	<description>The OSGi feature for the Proof-Of-Concept</description>
+	<description>The OSGi feature for the Polling Service</description>
 
 	<build>
 		<resources>
@@ -50,7 +50,6 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>${build-helper-plugin-version}</version>
 				<executions>
 					<execution>
 						<id>attach-artifacts</id>

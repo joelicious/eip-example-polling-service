@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-2016-03-17 05:07:47.770 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a816c00e-0153-82f8-eeb4-000007660070
+2016-03-17 18:04:07.897 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a816c00e-0153-85bf-aed6-00000769d4f8
 on database directory /devel/Dropbox/Work/redhat/workspaces/git/eip-example-polling-service/orchestration.polling.core/target/myTestDB  
 
 Database Class Loader started - derby.database.classpath=''
 
-2016-03-17 05:08:14.829 GMT:
-Shutting down instance a816c00e-0153-82f8-eeb4-000007660070
+2016-03-17 18:04:35.646 GMT:
+Shutting down instance a816c00e-0153-85bf-aed6-00000769d4f8
 ----------------------------------------------------------------

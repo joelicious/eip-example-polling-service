@@ -117,7 +117,7 @@ public class EmailListenerTest extends CamelBlueprintTestSupport {
 		// wait 1 second for Listener Route to start
 		Thread.sleep(1000);
 
-		ServiceStatus routeStatus = this.context.getRouteStatus("poll.file.receive");
+		ServiceStatus routeStatus = this.context.getRouteStatus("poll.email.receive");
 
 		// Show routes for information
 		List<Route> routes = this.context().getRoutes();
