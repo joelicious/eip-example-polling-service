@@ -4,3 +4,5 @@
 .settings/
 target/
 data/out/
+.attach_*
+derby.log
