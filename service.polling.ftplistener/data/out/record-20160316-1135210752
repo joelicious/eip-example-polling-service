@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<flightSegmentRecord>
+    <airline>American</airline>
+    <airlineAccountId>ABC123</airlineAccountId>
+    <airlineStatus>Executive Platinum</airlineStatus>
+    <arrivalCode>CLT</arrivalCode>
+    <arrivalDate>01/10/2016</arrivalDate>
+    <arrivalTime>10:00</arrivalTime>
+    <associatedMonth>JAN</associatedMonth>
+    <departureCode>FLL</departureCode>
+    <departureDate>01/10/2016</departureDate>
+    <departureTime>08:00</departureTime>
+    <fareCode>D</fareCode>
+    <firstName>Joseph</firstName>
+    <flightNumber>4382</flightNumber>
+    <lastName>Butler</lastName>
+    <personUUID></personUUID>
+    <recordLocator>LOC006</recordLocator>
+    <ticketNumber>012344498</ticketNumber>
+    <transactionId>1004</transactionId>
+</flightSegmentRecord>

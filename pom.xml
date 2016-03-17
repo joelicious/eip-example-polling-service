@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.jboss.fuse</groupId>
+	<artifactId>service.polling.parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Polling :: Parent</name>
+
+	<url>https://github.com/joelicious/eip-example-polling-service/</url>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>Red Hat</name>
+		<url>http://redhat.com</url>
+	</organization>
+
+	<scm>
+		<url>https://github.com/joelicious/eip-example-polling-service.git</url>
+		<connection>scm:git:git://github.com/joelicious/eip-example-polling-service.git</connection>
+		<developerConnection>scm:git:git@github.com:joelicious/eip-example-polling-service.git</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>jbutler</id>
+			<name>Joseph Butler</name>
+			<email>jbutler@redhat.com</email>
+			<organization>Red Hat</organization>
+			<organizationUrl>http://redhat.com</organizationUrl>
+			<roles>
+				<role>Consultant</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+
+		<!-- JBoss Fuse Properties -->
+		<jboss.fuse.bom.version>6.2.0.redhat-133</jboss.fuse.bom.version>
+		
+		<!-- Versions pulled from JBoss Fuse BOM for Dependency Management. -->
+		<cxf-version>3.0.4.redhat-620133</cxf-version>
+		<camel-version>2.15.1.redhat-620133</camel-version>
+		<activemq-version>5.11.0.redhat-620133</activemq-version>
+		<karaf-version>2.4.0.redhat-620133</karaf-version>
+		<hawtio-version>1.4.redhat-133</hawtio-version>
+		<fabric.version>1.2.0.redhat-133</fabric.version>
+		<junit-version>4.11</junit-version>
+		<log4j-version>1.2.17</log4j-version>
+		<asm.version>5.0.3</asm.version>
+		<slf4j-version>1.7.7</slf4j-version>
+		<saxon.bundle.version>9.5.1-1_1</saxon.bundle.version>
+		<commons-lang-version>2.6</commons-lang-version>
+		<postgresql-version>8.4-702.jdbc4</postgresql-version>
+
+		<!-- Logging Properties -->
+		<slf4j-version>1.6.6</slf4j-version>
+
+		<!-- Test Properties -->
+		<derby-version>10.4.2.0</derby-version>
+		<ftpserver-version>1.0.6</ftpserver-version>
+		<sshd-version>0.10.0</sshd-version>
+		<greenmail-version>1.4.0</greenmail-version>
+
+		<!-- Plugin Versions -->
+		<compiler-plugin-version>3.1</compiler-plugin-version>
+		<bundle-plugin-version>2.5.3</bundle-plugin-version>
+		<build-helper-plugin-version>1.9.1</build-helper-plugin-version>
+		<resources-plugin-version>2.6</resources-plugin-version>
+		<surefire-plugin-version>2.16</surefire-plugin-version>
+		<failsafe-plugin-version>2.16</failsafe-plugin-version>
+		<release-plugin-version>2.4.2</release-plugin-version>
+		<scm-plugin-version>1.9</scm-plugin-version>
+		<source-plugin-version>2.2.1</source-plugin-version>
+		<javadoc-plugin-version>2.9.1</javadoc-plugin-version>
+		<deploy-plugin-version>2.8.1</deploy-plugin-version>
+		<antrun-plugin-version>1.8</antrun-plugin-version>
+		<war-plugin-version>2.2</war-plugin-version>
+		<clean-plugin-version>3.0.0</clean-plugin-version>
+
+	</properties>
+
+	<modules>
+		<module>entities.travel</module>
+		<module>service.polling.emaillistener</module>
+		<module>service.polling.filelistener</module>
+		<module>service.polling.ftplistener</module>
+		<module>service.polling.sftplistener</module>
+		<module>orchestration.polling.core</module>
+		<module>features.polling</module>
+	</modules>
+
+	<dependencyManagement>
+
+		<dependencies>
+			<!-- Import Fuse Dependency Management via BOM -->
+			<dependency>
+				<groupId>org.jboss.fuse.bom</groupId>
+				<artifactId>jboss-fuse-parent</artifactId>
+				<version>${jboss.fuse.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Logging -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>1.6.6</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j-version}</version>
+			</dependency>
+
+			<!-- Testing -->
+			<dependency>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-test-blueprint</artifactId>
+				<version>${camel-version}</version>
+				<scope>test</scope>
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${build-helper-plugin-version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${source-plugin-version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${javadoc-plugin-version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${deploy-plugin-version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${antrun-plugin-version}</version>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${compiler-plugin-version}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${resources-plugin-version}</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>jboss.releases</id>
+			<name>JBoss Fuse Release Repository</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>jboss.ea</id>
+			<name>JBoss Fuse Early Access Release Repository</name>
+			<url>https://repository.jboss.org/nexus/content/groups/ea/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jboss.releases</id>
+			<name>JBoss Fuse Release Repository</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>jboss.ea</id>
+			<name>JBoss Fuse Early Access Release Repository</name>
+			<url>https://repository.jboss.org/nexus/content/groups/ea/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>

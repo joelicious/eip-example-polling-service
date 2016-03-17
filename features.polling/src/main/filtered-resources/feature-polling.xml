@@ -1,0 +1,11 @@
+<features>
+  <feature name="polling-service-demo" version="${project.version}">
+    <bundle>wrap:mvn:postgresql/postgresql/${postgresql-version}</bundle>
+    <bundle>wrap:mvn:org.springframework/spring-jdbc/${spring-jdbc-version}</bundle>
+    <bundle>mvn:org.jboss.examples/polling.service.entities/${project.version}</bundle>
+    <bundle>mvn:org.jboss.examples/polling.service.filetojms/${project.version}</bundle>
+    <bundle>mvn:org.jboss.examples/polling.service.ftptojms/${project.version}</bundle>
+    <bundle>mvn:org.jboss.examples/polling.service.sftptojms/${project.version}</bundle>
+    <bundle>mvn:org.jboss.examples/polling.service.jmstojdbc/${project.version}</bundle>
+  </feature>
+</features>

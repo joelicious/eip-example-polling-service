@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint
+	xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:camel="http://camel.apache.org/schema/blueprint"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+	xmlns:amq="http://activemq.apache.org/schema/core"
+	xsi:schemaLocation="
+       http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+       http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+	<cm:property-placeholder persistent-id="org.jboss.fuse.service.polling.ftplistener" />
+
+	<bean
+		id="flightSegmentRecordCsvHandler"
+		class="org.jboss.fuse.entities.travel.FlightSegmentRecord" />
+
+	<bean
+		id="activemq"
+		class="org.apache.activemq.camel.component.ActiveMQComponent">
+		<property
+			name="brokerURL"
+			value="${outbound.jms.url}:${outbound.jms.port}" />
+		<property
+			name="userName"
+			value="${outbound.jms.username}" />
+		<property
+			name="password"
+			value="${outbound.jms.password}" />
+	</bean>
+
+	<camelContext
+		id="poll.ftp.CamelContext"
+		xmlns="http://camel.apache.org/schema/blueprint">
+		
+		<errorHandler
+			type="DeadLetterChannel"
+			deadLetterUri="mock:error"
+			level="ERROR"
+			id="errorHandler">
+			<redeliveryPolicy
+				maximumRedeliveries="{{outbound.retry.count}}"
+				redeliveryDelay="{{outbound.retry.delay}}"
+				maximumRedeliveryDelay="{{outbound.retry.maxdelay}}"
+				retryAttemptedLogLevel="WARN"
+				logStackTrace="true"
+				logHandled="true" />
+		</errorHandler>
+		
+		<dataFormats>
+			<jaxb
+				contextPath="org.jboss.fuse.entities.travel"
+				prettyPrint="true"
+				id="jaxb" />
+		</dataFormats>
+		
+		<onException>
+			<exception>java.lang.Exception</exception>
+			<redeliveryPolicy
+				maximumRedeliveries="{{outbound.retry.count}}"
+				redeliveryDelay="{{outbound.retry.delay}}"
+				maximumRedeliveryDelay="{{outbound.retry.maxdelay}}"
+				retryAttemptedLogLevel="WARN"
+				logStackTrace="true"
+				logHandled="true" />
+			<handled>
+				<constant>true</constant>
+			</handled>
+			<to uri="file:data/unhandled" />
+		</onException>
+		
+		<route id="poll.ftp.receive">
+			<from uri="ftp://{{inbound.ftp.username}}@{{inbound.ftp.server}}:{{inbound.ftp.server.port}}/{{inbound.ftp.path}}?password={{inbound.ftp.password}}&amp;binary=false&amp;delete=true" />
+			<log message="File Transferred via FTP" />
+			<convertBodyTo type="java.lang.String" />
+			<log message="File Received: ${file:name}: ${body}" />
+			<split>
+				<tokenize token="\n"></tokenize>
+				<log message="FTP: FLIGHT SEGMENT RECORD CSV --- ${body}" />
+				<unmarshal>
+					<csv delimiter="," />
+				</unmarshal>
+				<to uri="bean:flightSegmentRecordCsvHandler?method=fromCSV" />
+				<marshal ref="jaxb" />
+				<log message="FTP: FLIGHT SEGMENT RECORD XML --- ${body}" />
+				<to uri="activemq:{{outbound.jms.dest}}" />
+			</split>
+			
+		</route>
+		
+	</camelContext>
+
+</blueprint>
