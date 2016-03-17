@@ -3,6 +3,6 @@
 .project
 .settings/
 target/
-data/out/
+data/
 .attach_*
 derby.log
