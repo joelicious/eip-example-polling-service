@@ -96,6 +96,7 @@
 					<to uri="bean:flightSegmentRecordCsvHandler?method=fromCSV" />
 					<marshal ref="jaxb" />
 					<log message="Email: FLIGHT SEGMENT RECORD XML --- ${body}" />
+					<convertBodyTo type="java.lang.String"/>
 					<to uri="activemq:{{outbound.jms.dest}}" />
 				</split>
 			</split>

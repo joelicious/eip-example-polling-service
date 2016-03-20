@@ -6,3 +6,10 @@ target/
 data/
 .attach_*
 derby.log
+test-output
+.DS_Store
+.idea
+*.iml
+*.ipr
+*.iws
+.metadata

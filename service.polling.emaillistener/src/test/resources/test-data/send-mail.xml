@@ -1,0 +1,18 @@
+<mail-message xmlns="http://www.citrusframework.org/schema/mail/message">
+  <from>citrus@localhost</from>
+  <to>accountone@localhost</to>
+  <cc></cc>
+  <bcc></bcc>
+  <subject>Test E-Mail</subject>
+  <body>
+    <contentType>text/plain; charset=utf-8</contentType>
+    <content>This is the email body text</content>
+    <attachments>
+      <attachment>
+        <contentType>text/plain; charset=utf-8</contentType>
+        <content>citrus:readFile('classpath:test-data/emailPollRecords-basicTest.txt')</content>
+        <fileName>emailPollRecords-basicTest.txt</fileName>
+      </attachment>
+    </attachments>
+  </body>
+</mail-message>
